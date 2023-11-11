@@ -7,9 +7,9 @@ const Home = () => {
         <>
             <InfoSection {...homeObjOne} />
             {/* <InfoSection {...homeObjThree} /> */}
-            <InfoSection {...homeObjTwo} />
+            {/* <InfoSection {...homeObjTwo} /> */}
             <Pricing />
-            <InfoSection {...homeObjFour} />
+            {/* <InfoSection {...homeObjFour} /> */}
         </>
     )
 }
