@@ -37,7 +37,7 @@ function Footer() {
     <FooterContainer>
       <FooterSubscription>
         <FooterSubHeading>
-          Join our exclusive membership to receive the latest news and trends
+          Join our exclusive waiting list, and get informed updatess
         </FooterSubHeading>
         <FooterSubText>You can unsubscribe at any time.</FooterSubText>
         <Form>

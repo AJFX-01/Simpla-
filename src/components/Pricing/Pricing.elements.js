@@ -42,10 +42,10 @@ export const PricingContainer = styled.div`
 `;
 
 export const PricingCard = styled(Link)`
-  background: #242424;
-  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
+  background: rgba(8, 14, 44);, 1;
+  box-shadow: 0 6px 20px rgba(4, 59, 92);, 1;
   width: 200px;
-  height: 300px;
+  height: 200px;
   text-decoration: none;
   border-radius: 10px;
   margin: 15px;
