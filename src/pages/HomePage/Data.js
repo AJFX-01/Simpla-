@@ -4,14 +4,14 @@ export const homeObjOne = {
     lightTopLine: true,
     lightText: true,
     lightTextDesc: true,
-    topLine: 'Marketing Agency',
-    headline: 'Lead Generation Specialist for Online Businesses',
+    topLine: 'CreditOps Tech Services',
+    headline: '',
     description:
-      'We help business owners increase their revenue. Our team of unique specialist can help you achieve your business goals.',
-    buttonLabel: 'Get Started',
+      'Cimpla delivers a comprehensive low-code SaaS solution, equipping your credit line business with essential tools and resources for seamless operation.',
+    buttonLabel: 'Coming Soon..',
     imgStart: '',
     img: require('../../images/svg-1.svg'),
-    alt: 'Credit Card',
+    alt: 'Credit Line',
     start: ''
   };
   
@@ -25,7 +25,7 @@ export const homeObjOne = {
     headline: 'Extremely quick onboarding process',
     description:
       "Once you've joined, our team of specialist will reach out to you and get you set up in minutes.",
-    buttonLabel: 'Learn More',
+    buttonLabel: 'Coming Soon..',
     imgStart: '',
     img: require('../../images/svg-2.svg'),
     alt: 'Vault',
