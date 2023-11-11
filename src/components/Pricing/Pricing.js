@@ -25,22 +25,15 @@ import {
     <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
       <PricingSection>
         <PricingWrapper>
-          <PricingHeading>Our Services</PricingHeading>
+          <PricingHeading>Coming Soon...</PricingHeading>
           <PricingContainer>
             <PricingCard to='/sign-up'>
               <PricingCardInfo>
                 <PricingCardIcon>
                   <GiRock />
                 </PricingCardIcon>
-                <PricingCardPlan>Starter Pack</PricingCardPlan>
+                <PricingCardPlan>Days</PricingCardPlan>
                 <PricingCardCost>$99.99</PricingCardCost>
-                <PricingCardLength>per month</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>100 New Users</PricingCardFeature>
-                  <PricingCardFeature>$10,000 Budget</PricingCardFeature>
-                  <PricingCardFeature>Retargeting analytics</PricingCardFeature>
-                </PricingCardFeatures>
-                <Button primary>Choose Plan</Button>
               </PricingCardInfo>
             </PricingCard>
             <PricingCard to='/sign-up'>
@@ -48,15 +41,8 @@ import {
                 <PricingCardIcon>
                   <GiCrystalBars />
                 </PricingCardIcon>
-                <PricingCardPlan>Gold Rush</PricingCardPlan>
+                <PricingCardPlan>Hours</PricingCardPlan>
                 <PricingCardCost>$299.99</PricingCardCost>
-                <PricingCardLength>per month</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>1000 New Users</PricingCardFeature>
-                  <PricingCardFeature>$50,000 Budget</PricingCardFeature>
-                  <PricingCardFeature>Lead Gen Analytics</PricingCardFeature>
-                </PricingCardFeatures>
-                <Button primary>Choose Plan</Button>
               </PricingCardInfo>
             </PricingCard>
             <PricingCard to='/sign-up'>
@@ -64,15 +50,17 @@ import {
                 <PricingCardIcon>
                   <GiCutDiamond />
                 </PricingCardIcon>
-                <PricingCardPlan>Diamond Kings</PricingCardPlan>
+                <PricingCardPlan>Minutes</PricingCardPlan>
                 <PricingCardCost>$999.99</PricingCardCost>
-                <PricingCardLength>per month</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>Unlimited Users</PricingCardFeature>
-                  <PricingCardFeature>Unlimited Budget</PricingCardFeature>
-                  <PricingCardFeature>24/7 Support</PricingCardFeature>
-                </PricingCardFeatures>
-                <Button primary>Choose Plan</Button>
+              </PricingCardInfo>
+            </PricingCard>
+            <PricingCard to='/sign-up'>
+              <PricingCardInfo>
+                <PricingCardIcon>
+                  <GiCutDiamond />
+                </PricingCardIcon>
+                <PricingCardPlan>Seconds</PricingCardPlan>
+                <PricingCardCost>$999.99</PricingCardCost>
               </PricingCardInfo>
             </PricingCard>
           </PricingContainer>

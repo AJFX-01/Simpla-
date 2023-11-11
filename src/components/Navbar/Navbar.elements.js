@@ -36,7 +36,7 @@ export const NavLogo = styled(Link)`
 export const NavIcon = styled.img`
     margin-right: 0.5rem;
     max-width: 30px;
-    max-height: 40px;
+    max-height: 
     
 
 `
