@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from '../../globalStyles'
-import logo from '../../../public/logo.png';
+
 import { Link } from 'react-router-dom'
 
 export const Nav = styled.nav`
@@ -33,8 +33,11 @@ export const NavLogo = styled(Link)`
     align-items: center;
 `
 
-export const NavIcon = styled(logo)`
+export const NavIcon = styled.img`
     margin-right: 0.5rem;
+    max-width: 30px;
+    max-height: 40px;
+    
 
 `
 

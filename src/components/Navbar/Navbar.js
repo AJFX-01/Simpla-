@@ -13,6 +13,7 @@ import { Nav,
 import { FaTimes, FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib'
 import { Button } from '../../globalStyles';
+import logo from '../../images/logo.png';
 
 
 function Navbar() {
@@ -65,7 +66,7 @@ function Navbar() {
             <Nav>
                 <NavbarContainer>
                     <NavLogo to='/'> 
-                        <NavIcon />
+                        <NavIcon src={logo} />
                                 CIMPLA
                     </NavLogo>
                     <HamburgerIcon onClick={handleClick}>
