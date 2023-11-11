@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '../../globalStyles';
+import logo from '../../images/logo.png';
 import {
   FaFacebook,
   FaInstagram,
@@ -82,10 +83,10 @@ function Footer() {
       <SocialMedia>
         <SocialMediaWrap>
           <SocialLogo to='/'>
-            <SocialIcon />
-            ULTRA
+            <SocialIcon src={logo} />
+            CIMPLA
           </SocialLogo>
-          <WebsiteRights>ULTRA © {date.getFullYear()} </WebsiteRights>
+          <WebsiteRights>CIMPLA © {date.getFullYear()} </WebsiteRights>
           <SocialIcons>
             <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
               <FaFacebook />

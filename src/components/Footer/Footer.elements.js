@@ -149,8 +149,10 @@ export const SocialLogo = styled(Link)`
   }
 `;
 
-export const SocialIcon = styled(FaMagento)`
+export const SocialIcon = styled.img`
   margin-right: 10px;
+  max-width: 30px;
+  max-height: 40px;
 `;
 
 export const WebsiteRights = styled.small`
