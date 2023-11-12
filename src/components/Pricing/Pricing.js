@@ -21,91 +21,50 @@ import {
 } from './Pricing.elements';
 
 const Pricing = () => {
-  // const countdownDurationDays = 60;
-  // const hoursInADay = 24;
-  // const minutesInAnHour = 60;
-  // const secondsInAMinute = 60;
-
-  // const getInitialTime = () => {
-  //   // Set a fixed start time for all users (tomorrow at midnight)
-  //   const tomorrow = new Date();
-  //   tomorrow.setDate(tomorrow.getDate() + 1);
-  //   tomorrow.setHours(0, 0, 0, 0);
-
-  //   const startTime = Math.floor(tomorrow.getTime() / 1000);
-  //   return {
-  //     days: countdownDurationDays,
-  //     hours: hoursInADay,
-  //     minutes: minutesInAnHour,
-  //     seconds: secondsInAMinute,
-  //     startTime,
-  //   };
-  // };
-
-  // const [time, setTime] = useState(getInitialTime());
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTime((prevTime) => {
-  //       const newTime = { ...prevTime };
-
-  //       // Count down seconds
-  //       if (newTime.seconds > 0) {
-  //         newTime.seconds--;
-  //       } else {
-  //         newTime.seconds = 59;
-
-  //         // Count down minutes
-  //         if (newTime.minutes > 0) {
-  //           newTime.minutes--;
-  //         } else {
-  //           newTime.minutes = 59;
-
-  //           // Count down hours
-  //           if (newTime.hours > 0) {
-  //             newTime.hours--;
-  //           } else {
-  //             newTime.hours = 23;
-
-  //             // Count down days
-  //             if (newTime.days > 0) {
-  //               newTime.days--;
-  //             } else {
-  //               // Countdown complete
-  //               clearInterval(interval);
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //       return newTime;
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-  const [countdown, setCountdown] = useState(60 * 24 * 60 * 60); // 60 days in seconds
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const days = Math.floor(countdown / (24 * 60 * 60));
-  const hours = Math.floor((countdown % (24 * 60 * 60)) / (60 * 60));
-  const minutes = Math.floor((countdown % (60 * 60)) / 60);
-  const seconds = countdown % 60;
-
-
-
+  
+    const calculateTimeLeft = () => {
+      const currentDate = new Date();
+      const targetDate = new Date(2024, 9, 1); // Months are zero-based, so 9 is October
+  
+      const difference = targetDate - currentDate;
+      let timeLeft = {};
+  
+      if (difference > 0) {
+        timeLeft = {
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        };
+      }
+      console.log(timeLeft);
+      return timeLeft;
+    };
+  
+    const [days, setDays] = useState(0);
+    const [hours, setHours] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+  
+    useEffect(() => {
+      const updateTimer = () => {
+        const timeLeft = calculateTimeLeft();
+        setDays(timeLeft.days);
+        setHours(timeLeft.hours);
+        setMinutes(timeLeft.minutes);
+        setSeconds(timeLeft.seconds);
+      };
+  
+      const timer = setInterval(updateTimer, 1000);
+  
+      return () => clearInterval(timer);
+    }, []);
+  
   return (
     <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
       <PricingSection>
         <PricingWrapper>
-          <PricingHeading>Coming Soon...</PricingHeading>
+          <PricingHeading>Cimpla Launching Soon In...</PricingHeading>
           <PricingContainer>
             <PricingCard to='/sign-up'>
               <PricingCardInfo>
@@ -113,7 +72,9 @@ const Pricing = () => {
              
                 </PricingCardIcon>
                 <PricingCardPlan>Days</PricingCardPlan>
-                <PricingCardCost>{days}</PricingCardCost>
+                <PricingCardCost>
+                  {days}
+                </PricingCardCost>
               </PricingCardInfo>
             </PricingCard>
             <PricingCard to='/sign-up'>
