@@ -47,7 +47,7 @@ const Pricing = () => {
       };
     }
 
-    const [time, setTime] = useState(getInitialTime());
+   
 
     const startTime = Math.floor(new Date().getTime() / 1000);
     return {
@@ -59,6 +59,7 @@ const Pricing = () => {
     };
   };
 
+  const [time, setTime] = useState(getInitialTime());
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
