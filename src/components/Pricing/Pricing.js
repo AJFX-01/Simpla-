@@ -21,7 +21,9 @@ import {
 } from './Pricing.elements';
 
 const Pricing = () => {
- const days = 60;
+ 
+
+  const countdownDurationDays = 60;
   const hoursInADay = 24;
   const minutesInAnHour = 60;
   const secondsInAMinute = 60;
@@ -33,7 +35,7 @@ const Pricing = () => {
       const elapsedTime = currentTime - storedTime.startTime;
 
       // Calculate the remaining time based on elapsed time
-      const remainingDays = days - Math.floor(elapsedTime / (24 * 3600));
+      const remainingDays = countdownDurationDays - Math.floor(elapsedTime / (24 * 3600));
       const remainingHours = hoursInADay - Math.floor((elapsedTime % (24 * 3600)) / 3600);
       const remainingMinutes = minutesInAnHour - Math.floor((elapsedTime % 3600) / 60);
       const remainingSeconds = secondsInAMinute - Math.floor(elapsedTime % 60);
@@ -47,11 +49,9 @@ const Pricing = () => {
       };
     }
 
-   
-
     const startTime = Math.floor(new Date().getTime() / 1000);
     return {
-      days,
+      days: countdownDurationDays,
       hours: hoursInADay,
       minutes: minutesInAnHour,
       seconds: secondsInAMinute,
@@ -60,12 +60,13 @@ const Pricing = () => {
   };
 
   const [time, setTime] = useState(getInitialTime());
+
+
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
 
- 
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setTime((prevTime) => {
@@ -106,9 +107,6 @@ const Pricing = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-
-
   return (
     <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
       <PricingSection>
