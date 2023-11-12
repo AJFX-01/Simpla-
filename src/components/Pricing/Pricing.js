@@ -21,39 +21,47 @@ import {
 } from './Pricing.elements';
 
 const Pricing = () => {
-  const days = 60;
+ const days = 60;
   const hoursInADay = 24;
   const minutesInAnHour = 60;
   const secondsInAMinute = 60;
+
+  const getInitialTime = () => {
+    const storedTime = JSON.parse(localStorage.getItem('timer'));
+    if (storedTime && storedTime.startTime) {
+      const currentTime = Math.floor(new Date().getTime() / 1000);
+      const elapsedTime = currentTime - storedTime.startTime;
+
+      // Calculate the remaining time based on elapsed time
+      const remainingDays = days - Math.floor(elapsedTime / (24 * 3600));
+      const remainingHours = hoursInADay - Math.floor((elapsedTime % (24 * 3600)) / 3600);
+      const remainingMinutes = minutesInAnHour - Math.floor((elapsedTime % 3600) / 60);
+      const remainingSeconds = secondsInAMinute - Math.floor(elapsedTime % 60);
+
+      return {
+        days: remainingDays >= 0 ? remainingDays : 0,
+        hours: remainingHours >= 0 ? remainingHours : 0,
+        minutes: remainingMinutes >= 0 ? remainingMinutes : 0,
+        seconds: remainingSeconds >= 0 ? remainingSeconds : 0,
+        startTime: storedTime.startTime,
+      };
+    }
+
+    const startTime = Math.floor(new Date().getTime() / 1000);
+    return {
+      days,
+      hours: hoursInADay,
+      minutes: minutesInAnHour,
+      seconds: secondsInAMinute,
+      startTime,
+    };
+  };
 
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
 
-  const [time, setTime] = useState(() => {
-    const storedTime = JSON.parse(localStorage.getItem('timer'));
-    if (storedTime) {
-      // Subtract the elapsed time from the initial values
-      const elapsedSeconds = (60 - storedTime.seconds) % 60;
-      const elapsedMinutes = (60 - storedTime.minutes - 1 + elapsedSeconds / 60) % 60;
-      const elapsedHours = (24 - storedTime.hours - 1 + elapsedMinutes / 60) % 24;
-      const elapsedDays = 60 - storedTime.days - 1 + elapsedHours / 24;
-
-      return {
-        days: days - Math.floor(elapsedDays),
-        hours: hoursInADay - Math.floor(elapsedHours),
-        minutes: minutesInAnHour - Math.floor(elapsedMinutes),
-        seconds: secondsInAMinute - Math.floor(elapsedSeconds),
-      };
-    } else {
-      return {
-        days,
-        hours: hoursInADay,
-        minutes: minutesInAnHour,
-        seconds: secondsInAMinute,
-      };
-    }
-  });
+  const [time, setTime] = useState(getInitialTime());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,6 +103,7 @@ const Pricing = () => {
 
     return () => clearInterval(interval);
   }, []);
+
 
 
   return (
