@@ -24,7 +24,7 @@ const Pricing = () => {
   
     const calculateTimeLeft = () => {
       const currentDate = new Date();
-      const targetDate = new Date(2024, 9, 1); // Months are zero-based, so 9 is October
+      const targetDate = new Date(2024, 1, 11); // Months are zero-based, so 9 is October
   
       const difference = targetDate - currentDate;
       let timeLeft = {};
