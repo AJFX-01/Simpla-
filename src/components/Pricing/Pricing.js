@@ -26,7 +26,11 @@ const hoursInADay = 24;
 const minutesInAnHour = 60;
 const secondsInAMinute = 60;
 
-const [time, setTime] = useState({
+useEffect(() => {
+  localStorage.setItem('timer', JSON.stringify(time));
+}, [time]);
+
+const [time, setTime] = useState(JSON.parse(localStorage.getItem('timer')) || {
   days,
   hours: hoursInADay,
   minutes: minutesInAnHour, 
