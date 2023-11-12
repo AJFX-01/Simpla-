@@ -39,7 +39,8 @@ const Pricing = () => {
       };
     }
 
-    const startTime = Math.floor(new Date().getTime() / 1000);
+    // Set a fixed start time for all users in production
+    const startTime = Math.floor(new Date('2023-11-11T00:00:00Z').getTime() / 1000);
     return {
       days: countdownDurationDays,
       hours: hoursInADay,
@@ -49,12 +50,11 @@ const Pricing = () => {
     };
   };
 
-  const [time, setTime] = useState(getInitialTime());
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
 
-  
+  const [time, setTime] = useState(getInitialTime());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,6 +96,7 @@ const Pricing = () => {
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
       <PricingSection>
