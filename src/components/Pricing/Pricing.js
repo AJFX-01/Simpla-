@@ -21,26 +21,18 @@ import {
 } from './Pricing.elements';
 
 const Pricing = () => {
- 
   const countdownDurationDays = 60;
   const hoursInADay = 24;
   const minutesInAnHour = 60;
   const secondsInAMinute = 60;
 
   const getInitialTime = () => {
-    const storedTime = JSON.parse(localStorage.getItem('timer'));
-    if (storedTime && storedTime.startTime) {
-      return {
-        days: storedTime.days,
-        hours: storedTime.hours,
-        minutes: storedTime.minutes,
-        seconds: storedTime.seconds,
-        startTime: storedTime.startTime,
-      };
-    }
+    // Set a fixed start time for all users (tomorrow at midnight)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
 
-    // Set a fixed start time for all users in production
-    const startTime = Math.floor(new Date('2023-11-11T00:00:00Z').getTime() / 1000);
+    const startTime = Math.floor(tomorrow.getTime() / 1000);
     return {
       days: countdownDurationDays,
       hours: hoursInADay,
@@ -49,10 +41,6 @@ const Pricing = () => {
       startTime,
     };
   };
-
-  useEffect(() => {
-    localStorage.setItem('timer', JSON.stringify(time));
-  }, [time]);
 
   const [time, setTime] = useState(getInitialTime());
 
@@ -96,6 +84,7 @@ const Pricing = () => {
 
     return () => clearInterval(interval);
   }, []);
+
 
   return (
     <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
