@@ -20,42 +20,60 @@ import {
   PricingCardFeature
 } from './Pricing.elements';
 
- const Pricing = () => {
-  const day = 60;
-  const hour =  day * 24;
-  const minutes = hour * 60;
-  const second = minutes * 60;
+const Pricing = () => {
+  const days = 60;
+const hoursInADay = 24;
+const minutesInAnHour = 60;
+const secondsInAMinute = 60;
 
-  const [time, setTime] = useState({
-    days: day,
-    hours: hour,
-    minutes: minutes,
-    seconds: second,
-  });
+const [time, setTime] = useState({
+  days,
+  hours: hoursInADay,
+  minutes: minutesInAnHour, 
+  seconds:secondsInAMinute
+});
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((prevTime) => {
-        const newTime = { ...prevTime };
+useEffect(() => {
+  const interval = setInterval(() => {
+    setTime((prevTime) => {
+      const newTime = { ...prevTime };
+
+      // Count down seconds
+      if (newTime.seconds > 0) {
         newTime.seconds--;
-        if (newTime.seconds === 60) {
-          newTime.seconds = 0;
-          newTime.minutes--;
-        }
-        if (newTime.minutes === 60) {
-          newTime.minutes = 0;
-          newTime.hours--;
-        }
-        if (newTime.hours === 24) {
-          newTime.hours = 0;
-          newTime.days--;
-        }
-        return newTime;
-      });
-    }, 1000);
+      } else {
+        newTime.seconds = 59;
 
-    return () => clearInterval(interval);
-  }, []);
+        // Count down minutes
+        if (newTime.minutes > 0) {
+          newTime.minutes--;
+        } else {
+          newTime.minutes = 59;
+
+          // Count down hours
+          if (newTime.hours > 0) {
+            newTime.hours--;
+          } else {
+            newTime.hours = 23;
+
+            // Count down days
+            if (newTime.days > 0) {
+              newTime.days--;
+            } else {
+              // Countdown complete
+              clearInterval(interval);
+            }
+          }
+        }
+      }
+
+      return newTime;
+    });
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
+
 
 
   return (
