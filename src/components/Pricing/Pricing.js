@@ -22,7 +22,6 @@ import {
 
 const Pricing = () => {
  
-
   const countdownDurationDays = 60;
   const hoursInADay = 24;
   const minutesInAnHour = 60;
@@ -31,20 +30,11 @@ const Pricing = () => {
   const getInitialTime = () => {
     const storedTime = JSON.parse(localStorage.getItem('timer'));
     if (storedTime && storedTime.startTime) {
-      const currentTime = Math.floor(new Date().getTime() / 1000);
-      const elapsedTime = currentTime - storedTime.startTime;
-
-      // Calculate the remaining time based on elapsed time
-      const remainingDays = countdownDurationDays - Math.floor(elapsedTime / (24 * 3600));
-      const remainingHours = hoursInADay - Math.floor((elapsedTime % (24 * 3600)) / 3600);
-      const remainingMinutes = minutesInAnHour - Math.floor((elapsedTime % 3600) / 60);
-      const remainingSeconds = secondsInAMinute - Math.floor(elapsedTime % 60);
-
       return {
-        days: remainingDays >= 0 ? remainingDays : 0,
-        hours: remainingHours >= 0 ? remainingHours : 0,
-        minutes: remainingMinutes >= 0 ? remainingMinutes : 0,
-        seconds: remainingSeconds >= 0 ? remainingSeconds : 0,
+        days: storedTime.days,
+        hours: storedTime.hours,
+        minutes: storedTime.minutes,
+        seconds: storedTime.seconds,
         startTime: storedTime.startTime,
       };
     }
@@ -59,14 +49,12 @@ const Pricing = () => {
     };
   };
 
-  const [time, setTime] = useState(getInitialTime());
-
-
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
 
-  
+  const [time, setTime] = useState(getInitialTime());
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTime((prevTime) => {
