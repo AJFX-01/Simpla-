@@ -49,11 +49,12 @@ const Pricing = () => {
     };
   };
 
+  const [time, setTime] = useState(getInitialTime());
   useEffect(() => {
     localStorage.setItem('timer', JSON.stringify(time));
   }, [time]);
 
-  const [time, setTime] = useState(getInitialTime());
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
